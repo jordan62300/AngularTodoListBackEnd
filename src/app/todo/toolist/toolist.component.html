@@ -1,14 +1,9 @@
 <div class=" mt-4 ">
-    <div class="border border-dark p-4">
-        <h1 class="text-center mb-4">Vendredi 12 juillet</h1>
-        <p>CHose a faire Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium illum repellat ipsa error temporibus eveniet tenetur tempora, aperiam nulla sed voluptatem tempore? Omnis obcaecati magni nesciunt laudantium, placeat quod.</p>
-        <button class="btn text-center btn-success btn-lg btn-block">Tache faite</button>
-        <button class=" btn btn-danger btn-lg btn-block mt-1 mb-1">Supprimer la tache</button>
+    <div class="border border-dark p-4" *ngFor="let todo of todos">
+        
+        <h1 class="text-center mb-4">{{ todo.created_at | date:'EEEE d MMMM y' }}</h1>
+        <h2> {{todo.title }}</h2>
+        <p> {{todo.task }}</p>
+        <button class="btn text-center btn-success btn-lg btn-block" (click)="onCompleteTodo()">Tache faite</button>
+        <button class=" btn btn-danger btn-lg btn-block mt-1 mb-1" (click)="onDeleteTodo()">Supprimer la tache</button>
     </div>
-    <div class=" mt-4 border border-dark p-4">
-        <h1 class="text-center">Vendredi 12 juillet</h1>
-        <p>CHose a faire Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium illum repellat ipsa error temporibus eveniet tenetur tempora, aperiam nulla sed voluptatem tempore? Omnis obcaecati magni nesciunt laudantium, placeat quod.</p>
-        <button class="btn text-center btn-success btn-lg btn-block">Tache faite</button>
-        <button class=" btn btn-danger btn-lg btn-block mt-1 mb-1">Supprimer la tache</button>
-    </div>
-</div>

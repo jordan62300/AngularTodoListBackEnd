@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule ,LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -12,6 +12,12 @@ import { AuthService } from './Services/auth.service';
 import { TodolistService } from './Services/todolist.service';
 import { Routes , RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, 'fr');
 
 
 const appRoutes : Routes = [
@@ -19,8 +25,8 @@ const appRoutes : Routes = [
   {path: 'auth/signup' , component: SignupComponent},
   {path: 'todoList' , component : ToolistComponent},
   {path: 'todoList/new' , component: TodolistFormComponent},
-  {path: '**' , redirectTo: 'todolist'} ,
-  {path: '' , redirectTo: 'todolist' , pathMatch: 'full'}
+  {path: '**' , redirectTo: 'todoList'} ,
+  {path: '' , redirectTo: 'todoList' , pathMatch: 'full'}
 ]
 
 
@@ -32,17 +38,20 @@ const appRoutes : Routes = [
     SigninComponent,
     SignupComponent,
     ToolistComponent,
-    TodolistFormComponent
+    TodolistFormComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthGuardService,
     AuthService,
-    TodolistService
+    TodolistService,
+    {provide: LOCALE_ID, useValue: 'fr' }
   ],
   bootstrap: [AppComponent]
 })
